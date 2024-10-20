@@ -1,0 +1,7 @@
+
+State Machine - |control_giros_contador|Pru_giros_conta:inst|fstate
+Name fstate.Avanza_giroIzq fstate.gira_90_Der fstate.gira_90_Izq fstate.Avanza_giroDer 
+fstate.Avanza_giroDer 0 0 0 0 
+fstate.gira_90_Izq 0 0 1 1 
+fstate.gira_90_Der 0 1 0 1 
+fstate.Avanza_giroIzq 1 0 0 1 

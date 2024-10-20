@@ -1,0 +1,155 @@
+|control_giros_contador
+hab_contador <= Pru_giros_conta:inst.hab_contador
+reset => Pru_giros_conta:inst.reset
+reset => inst4.IN0
+reset => contador_n_bits:inst2.reset
+inclk0 => Pru_giros_conta:inst.clock
+inclk0 => pll:inst3.inclk0
+Muro => Pru_giros_conta:inst.Muro
+c0 <= pll:inst3.c0
+PWM <= pll:inst3.c1
+locked <= pll:inst3.locked
+MD[0] <= Pru_giros_conta:inst.MD[0]
+MD[1] <= Pru_giros_conta:inst.MD[1]
+MI[0] <= Pru_giros_conta:inst.MI[0]
+MI[1] <= Pru_giros_conta:inst.MI[1]
+
+
+|control_giros_contador|Pru_giros_conta:inst
+reset => reg_fstate.gira_90_Der.OUTPUTSELECT
+reset => reg_fstate.gira_90_Izq.OUTPUTSELECT
+reset => reg_fstate.Avanza_giroDer.OUTPUTSELECT
+reset => reg_fstate.Avanza_giroIzq.OUTPUTSELECT
+reset => MD.OUTPUTSELECT
+reset => MD.OUTPUTSELECT
+reset => MI.OUTPUTSELECT
+reset => MI.OUTPUTSELECT
+reset => hab_contador.OUTPUTSELECT
+clock => fstate~1.DATAIN
+Muro => Selector0.IN3
+Muro => Selector1.IN3
+Muro => Selector2.IN2
+Muro => Selector3.IN2
+fin_contador => Selector0.IN1
+fin_contador => Selector1.IN1
+fin_contador => Selector2.IN1
+fin_contador => Selector3.IN1
+MD[0] <= MD.DB_MAX_OUTPUT_PORT_TYPE
+MD[1] <= MD.DB_MAX_OUTPUT_PORT_TYPE
+MI[0] <= MI.DB_MAX_OUTPUT_PORT_TYPE
+MI[1] <= MI.DB_MAX_OUTPUT_PORT_TYPE
+hab_contador <= hab_contador.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|control_giros_contador|contador_n_bits:inst2
+clk => max_reached~reg0.CLK
+clk => contador[0].CLK
+clk => contador[1].CLK
+clk => contador[2].CLK
+clk => contador[3].CLK
+clk => contador[4].CLK
+clk => contador[5].CLK
+clk => contador[6].CLK
+clk => contador[7].CLK
+enable => max_reached~reg0.ENA
+enable => contador[7].ENA
+enable => contador[6].ENA
+enable => contador[5].ENA
+enable => contador[4].ENA
+enable => contador[3].ENA
+enable => contador[2].ENA
+enable => contador[1].ENA
+enable => contador[0].ENA
+reset => max_reached~reg0.ACLR
+reset => contador[0].ACLR
+reset => contador[1].ACLR
+reset => contador[2].ACLR
+reset => contador[3].ACLR
+reset => contador[4].ACLR
+reset => contador[5].ACLR
+reset => contador[6].ACLR
+reset => contador[7].ACLR
+max_reached <= max_reached~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|control_giros_contador|pll:inst3
+areset => altpll:altpll_component.areset
+inclk0 => altpll:altpll_component.inclk[0]
+c0 <= altpll:altpll_component.clk[0]
+c1 <= altpll:altpll_component.clk[1]
+locked <= altpll:altpll_component.locked
+
+
+|control_giros_contador|pll:inst3|altpll:altpll_component
+inclk[0] => pll_altpll:auto_generated.inclk[0]
+inclk[1] => pll_altpll:auto_generated.inclk[1]
+fbin => ~NO_FANOUT~
+pllena => ~NO_FANOUT~
+clkswitch => ~NO_FANOUT~
+areset => pll_altpll:auto_generated.areset
+pfdena => ~NO_FANOUT~
+clkena[0] => ~NO_FANOUT~
+clkena[1] => ~NO_FANOUT~
+clkena[2] => ~NO_FANOUT~
+clkena[3] => ~NO_FANOUT~
+clkena[4] => ~NO_FANOUT~
+clkena[5] => ~NO_FANOUT~
+extclkena[0] => ~NO_FANOUT~
+extclkena[1] => ~NO_FANOUT~
+extclkena[2] => ~NO_FANOUT~
+extclkena[3] => ~NO_FANOUT~
+scanclk => ~NO_FANOUT~
+scanclkena => ~NO_FANOUT~
+scanaclr => ~NO_FANOUT~
+scanread => ~NO_FANOUT~
+scanwrite => ~NO_FANOUT~
+scandata => ~NO_FANOUT~
+phasecounterselect[0] => ~NO_FANOUT~
+phasecounterselect[1] => ~NO_FANOUT~
+phasecounterselect[2] => ~NO_FANOUT~
+phasecounterselect[3] => ~NO_FANOUT~
+phaseupdown => ~NO_FANOUT~
+phasestep => ~NO_FANOUT~
+configupdate => ~NO_FANOUT~
+fbmimicbidir <> <GND>
+clk[0] <= clk[0].DB_MAX_OUTPUT_PORT_TYPE
+clk[1] <= clk[1].DB_MAX_OUTPUT_PORT_TYPE
+clk[2] <= clk[2].DB_MAX_OUTPUT_PORT_TYPE
+clk[3] <= clk[3].DB_MAX_OUTPUT_PORT_TYPE
+clk[4] <= clk[4].DB_MAX_OUTPUT_PORT_TYPE
+extclk[0] <= <GND>
+extclk[1] <= <GND>
+extclk[2] <= <GND>
+extclk[3] <= <GND>
+clkbad[0] <= <GND>
+clkbad[1] <= <GND>
+enable1 <= <GND>
+enable0 <= <GND>
+activeclock <= <GND>
+clkloss <= <GND>
+locked <= pll_altpll:auto_generated.locked
+scandataout <= <GND>
+scandone <= <GND>
+sclkout0 <= <GND>
+sclkout1 <= <GND>
+phasedone <= <GND>
+vcooverrange <= <GND>
+vcounderrange <= <GND>
+fbout <= <GND>
+fref <= <GND>
+icdrclk <= <GND>
+
+
+|control_giros_contador|pll:inst3|altpll:altpll_component|pll_altpll:auto_generated
+areset => pll_lock_sync.ACLR
+areset => pll1.ARESET
+clk[0] <= pll1.CLK
+clk[1] <= pll1.CLK1
+clk[2] <= pll1.CLK2
+clk[3] <= pll1.CLK3
+clk[4] <= pll1.CLK4
+inclk[0] => pll1.CLK
+inclk[1] => pll1.CLK1
+locked <= locked.DB_MAX_OUTPUT_PORT_TYPE
+
+
